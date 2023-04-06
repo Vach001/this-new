@@ -11,14 +11,14 @@ function Baby(name, age, favoriteToy) {
 }
 
 Baby.prototype.play = function () {
-  const result = `${this.name} is an adult!`;
+  let result = `${this.name} is an adult!`;
 
   if (this.age < 18) {
-    return `${this.name} playing with ${this.favoriteToy}!`;
+    result = `${this.name} playing with ${this.favoriteToy}!`;
+    return result;
   }
   return result;
 };
-
 const babyPerson = new Baby("Bob", 10, "ball");
 
 console.log(babyPerson.play());
