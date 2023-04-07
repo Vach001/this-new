@@ -30,12 +30,12 @@ Playlist.prototype.play = function () {
   if (this.isPlaying === false) {
     return `${this.songs[this.index].title} started`;
   } else {
-    this.isPlaying === true;
+    this.isPlaying = true;
     return `${this.songs[this.index].title} started to play`;
   }
 };
 Playlist.prototype.stop = function () {
-  this.isPlaying === false;
+  this.isPlaying = false;
   return `${this.songs[this.index].title} stopped`;
 };
 Playlist.prototype.next = function () {
@@ -63,4 +63,4 @@ console.log(playlist.play()); // Hey Jude started to play
 console.log(playlist.next()); // Hey Jude stopped, Jaded started
 console.log(playlist.next()); // Jaded stopped, Hey Jude started
 console.log(playlist.stop()); // Hey Jude stopped
-console.log(playlist.play()); // Hey Jude started to play
+console.log(playlist.play()); // Hey Jude started
