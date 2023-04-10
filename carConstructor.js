@@ -18,20 +18,26 @@ function Car(model, milesPerGallon) {
 }
 Car.prototype.fill = function (gallon) {
   this.tank += gallon;
-  return `You can drive ${this.tank * this.milesPerGallon} miles of ${this.model}.`;
+  return `You can drive ${this.tank * this.milesPerGallon} miles of ${
+    this.model
+  }.`;
 };
 Car.prototype.drive = function (distance) {
-  if (this.tank > 0) {
-    this.tank -= distance / this.milesPerGallon;
-    this.odometer += distance;
+  let tank = this.tank;
+  let odometer = this.odometer;
+  const milesPerGallon = this.milesPerGallon;
+
+  if (tank > 0) {
+    tank -= distance / milesPerGallon;
+    odometer += distance;
     return `Your fuel will only be enough to go ${
-      this.tank * this.milesPerGallon
+      tank * milesPerGallon
     } miles of ${this.model}!`;
   } else {
-    return `I ran out of fuel at ${this.odometer} miles!`;
+    return `I ran out of fuel at ${odometer} miles!`;
   }
 };
-
 const myCar = new Car("VAZ-2106", 2);
-console.log(myCar.fill(100));
-console.log(myCar.drive(150));
+
+console.log(myCar.fill(100)); //You can drive 200 miles of VAZ-2106.
+console.log(myCar.drive(150)); //Your fuel will only be enough to go 50 miles of VAZ-2106!
