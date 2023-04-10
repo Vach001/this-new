@@ -13,7 +13,7 @@ Stop: Sets the song as not playing (isPlaying = false)
 function Playlist() {
   this.songs = [];
   this.index = 0;
-  this.isPlaying = null;
+  this.isPlaying = true;
 }
 function Songs(title, artist) {
   this.title = title;
@@ -24,14 +24,16 @@ Playlist.prototype.add = function (song) {
   return this.songs;
 };
 Playlist.prototype.play = function () {
-  if (this.songs.length === 0) {
+  const songs = this.songs;
+
+  if (songs.length === 0) {
     return "Your playlist is empty!";
   }
-  if (this.isPlaying === false) {
-    return `${this.songs[this.index].title} started`;
+  if (!this.isPlaying) {
+    return `${songs[this.index].title} started`;
   } else {
     this.isPlaying = true;
-    return `${this.songs[this.index].title} started to play`;
+    return `${songs[this.index].title} started to play`;
   }
 };
 Playlist.prototype.stop = function () {
@@ -39,15 +41,17 @@ Playlist.prototype.stop = function () {
   return `${this.songs[this.index].title} stopped`;
 };
 Playlist.prototype.next = function () {
-  if (this.index === this.songs.length - 1) {
+  const songs = this.songs;
+
+  if (this.index === songs.length - 1) {
     this.index = 0;
-    return `${this.songs[this.songs.length - 1].title} stopped, ${
-      this.songs[this.index].title
+    return `${songs[songs.length - 1].title} stopped, ${
+      songs[this.index].title
     } started`;
   } else {
     this.index++;
-    return `${this.songs[this.index - 1].title} stopped, ${
-      this.songs[this.index].title
+    return `${songs[this.index - 1].title} stopped, ${
+      songs[this.index].title
     } started`;
   }
 };
